@@ -31,11 +31,10 @@ import { NavLink } from 'react-router-dom';
 class Header extends Component {
   constructor(props) {
     super(props);
-    this.state = {isLoggedIn: false};
   }
 
   render() {
-    const isLoggedIn = this.state.isLoggedIn;
+    const isLoggedIn = this.props.isLoggedIn;
     let button;
     if (isLoggedIn)
       {

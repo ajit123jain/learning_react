@@ -7,12 +7,12 @@ class Login extends Component {
     this.state = {
       email: "",
       password: "",
-      isLoggedIn: false,
       errors: null,
     };
     this.onChangeEmail = this.onChangeEmail.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
     this.signInformSubmit = this.signInformSubmit.bind(this);
+    this.afterLogin = props.afterLogin.bind(this);
   }
 
   onChangeEmail(e) {
@@ -40,16 +40,15 @@ class Login extends Component {
     };
     LoginService.create(data)
       .then(response => {
-        this.setState({
-          isLoggedIn: true,
-          errors: null
-        });
+        // this.setState({
+        //   errors: null
+        // });
+        this.afterLogin(true);
         this.props.history.push("/profile");
         console.log(response.data);
       })
       .catch(e => {
         this.setState({
-          isLoggedIn: false,
           errors: "Invalid Username and Password."
         });
         console.log(e);

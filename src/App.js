@@ -2,9 +2,7 @@ import Header from './components/Header';
 import Login from './components/Login';
 import React, { Component } from 'react';
 import { BrowserRouter, Link, Route, Switch, Redirect } from "react-router-dom";
-// import * as serviceworker from "./serviceworker";
-// import LoginService from "./services/LoginService";
-// // import ReactDOM from 'react-dom';
+
 import './App.css';
 
 
@@ -44,15 +42,18 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      isLoggedIn: false
+      isLoggedIn: false,
+      current_user: null
     }
     this.afterLogin = this.afterLogin.bind(this);
   }
 
-  afterLogin(isSuccess){
+  afterLogin(isSuccess, loggedInUser = null){
     this.setState({
-      isLoggedIn: isSuccess ? true : false 
-    });   
+      isLoggedIn: (isSuccess ? true : false),
+      current_user: loggedInUser
+    }); 
+    console.log(this.state.current_user)  
   }
 
   render() {

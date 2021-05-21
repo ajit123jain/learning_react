@@ -40,10 +40,12 @@ class Login extends Component {
     };
     LoginService.create(data)
       .then(response => {
-        // this.setState({
-        //   errors: null
-        // });
-        this.afterLogin(true);
+        this.setState({
+          errors: null
+        });
+        let user = response.data
+        user["authorization"] = response.headers.authorization
+        this.afterLogin(true, user);
         this.props.history.push("/profile");
         console.log(response.data);
       })

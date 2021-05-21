@@ -1,8 +1,8 @@
 import http from "../http-common";
 
 class LoginService {
-  create(data) {
-    return http.post("/users/sign_in", data);
+  create(data, config) {
+    return http.post("/users/sign_in", data, config);
   }
 
 }

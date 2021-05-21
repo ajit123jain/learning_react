@@ -1,25 +1,54 @@
-import logo from './logo.svg';
+import Header from './components/Header';
+import React from 'react';
+import ReactDOM from 'react-dom';
 import './App.css';
+import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
 
-function App() {
+const Home = () => {
+  return <h2>Home Page</h2>;
+};
+
+const About = () => {
+  return <h2>About Page</h2>;
+};
+
+const Contact = () => {
+  return <h2>Contact Page</h2>;
+};
+
+const Profile = (props) => {
+  console.log(props);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h2>Profile Page</h2>
+      <Link to="/profile/10">Edit Profile</Link>
     </div>
   );
-}
+};
+
+const EditProfile = (props) => {
+  console.log(props);
+  return <p>Editing profile page of user with id {props.match.params.id} </p>;
+};
+
+const NotFound = () => {
+  return <h2>Page Not found.</h2>;
+};
+
+const App = () => {
+  return (
+    <BrowserRouter>
+      <Header />
+      <Switch>
+        <Route path="/" component={Home} exact={true} />
+        <Route path="/about" component={About} />
+        <Route path="/contact" component={Contact} />
+        <Route path="/profile" component={Profile} exact={true} />
+        <Route path="/profile/:id" component={EditProfile} />
+        <Route component={NotFound} />
+      </Switch>
+    </BrowserRouter>
+  );
+};
 
 export default App;

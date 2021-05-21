@@ -1,3 +1,13 @@
 Steps 
 
 create-react-app learning_react
+yarn add bootstrap@4.6.0 react-bootstrap@1.5.2 
+yarn add react-router-dom@5.2.0
+
+
+
+
+
+Need to learn
+WebVitals 
+Strict Mode

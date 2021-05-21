@@ -19,18 +19,28 @@ const Contact = () => {
 };
 
 const Profile = (props) => {
-  console.log(props);
+  let user_id = props.current_user && props.current_user.id ;
+  let url = "/profile/"+ user_id; 
   return (
     <div>
       <h2>Profile Page</h2>
-      <Link to="/profile/10">Edit Profile</Link>
+      <Link to={url}>Edit Profile</Link>
     </div>
   );
 };
 
 const EditProfile = (props) => {
-  console.log(props);
-  return <p>Editing profile page of user with id {props.match.params.id} </p>;
+  if (props.current_user){
+    return (
+    <div>
+      <h2>Current logged in user {props.current_user.email}</h2>
+      <p>Editing profile page of user with id {props.match.params.id} </p>
+    </div>
+    ); 
+  }
+  else{
+    return null 
+  }
 };
 
 const NotFound = () => {
@@ -57,7 +67,7 @@ class App extends Component {
   }
 
   render() {
-    const {isLoggedIn} = this.state
+    const {isLoggedIn, current_user} = this.state
     return (
       <BrowserRouter>
         <Header isLoggedIn={isLoggedIn}  />
@@ -65,8 +75,16 @@ class App extends Component {
           <Route path="/" component={Home} exact={true} />
           <Route path="/about" component={About} />
           <Route path="/contact" component={Contact} />
-          <Route path="/profile" component={Profile} exact={true} />
-          <Route path="/profile/:id" component={EditProfile} />
+          <Route path="/profile" exact={true} 
+            render={(props) => (
+              <Profile {...props} isLoggedIn={isLoggedIn} current_user={current_user} />
+            )}
+          />
+          <Route path="/profile/:id" 
+            render={(props) => (
+              <EditProfile {...props} isLoggedIn={isLoggedIn} current_user={current_user} />
+            )}
+            />
           <Route path="/login" 
             render={(props) => (
               <Login {...props} isLoggedIn={this.state.isLoggedIn} afterLogin={this.afterLogin} />

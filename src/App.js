@@ -1,6 +1,9 @@
 import Header from './components/Header';
+import Login from './components/Login';
 import React from 'react';
-import ReactDOM from 'react-dom';
+// import * as serviceworker from "./serviceworker";
+// import LoginService from "./services/LoginService";
+// // import ReactDOM from 'react-dom';
 import './App.css';
 import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
 
@@ -38,13 +41,14 @@ const NotFound = () => {
 const App = () => {
   return (
     <BrowserRouter>
-      <Header />
+      <Header isLoggedIn={true}  />
       <Switch>
         <Route path="/" component={Home} exact={true} />
         <Route path="/about" component={About} />
         <Route path="/contact" component={Contact} />
         <Route path="/profile" component={Profile} exact={true} />
         <Route path="/profile/:id" component={EditProfile} />
+        <Route path="/login" component={Login} />
         <Route component={NotFound} />
       </Switch>
     </BrowserRouter>
@@ -52,3 +56,5 @@ const App = () => {
 };
 
 export default App;
+
+

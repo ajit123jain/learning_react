@@ -150,19 +150,19 @@ export default class PostList extends Component {
               <div>
                 <label>
                   <strong>Title:</strong>
-                </label>{" "}
+                </label>
                 {current_post.title}
               </div>
               <div>
                 <label>
                   <strong>Description:</strong>
-                </label>{" "}
+                </label>
                 {current_post.description}
               </div>
               <div>
                 <label>
                   <strong>Status:</strong>
-                </label>{" "}
+                </label>
                 {current_post.published ? "Published" : "Pending"}
               </div>
 

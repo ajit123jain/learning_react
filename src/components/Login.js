@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import LoginService from "../services/LoginService";
+import LocalStorage from '../libs';
 
 class Login extends Component {
   constructor(props) {
@@ -45,15 +46,17 @@ class Login extends Component {
         });
         let user = response.data
         user["authorization"] = response.headers.authorization
+        LocalStorage.addToken(response.headers.authorization);
+        LocalStorage.addUser(user);
         this.afterLogin(true, user);
         this.props.history.push("/profile");
-        console.log(response.data);
+
       })
       .catch(e => {
         this.setState({
           errors: "Invalid Username and Password."
         });
-        console.log(e);
+
       });
 
   }

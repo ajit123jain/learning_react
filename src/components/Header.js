@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 
+
 class Header extends Component {
   constructor(props) {
     super(props);
@@ -11,11 +12,14 @@ class Header extends Component {
     let button;
     if (isLoggedIn)
       {
-        button = <NavLink to="/profile" activeClassName="active">Profile</NavLink>;
+        button = <>
+                  <li><NavLink to="/posts" activeClassName="active">Posts</NavLink></li>
+                  <li><NavLink to="/profile" activeClassName="active">Profile</NavLink></li>
+                </>;
       }
     else
       {
-        button = <NavLink to="/login" activeClassName="active">Login</NavLink>;
+        button = <li><NavLink to="/login" activeClassName="active">Login</NavLink></li>;
       }
     return (
       <ul className="navigation-menu">
@@ -34,7 +38,7 @@ class Header extends Component {
             Contact
           </NavLink>
         </li>
-        <li>{button}</li>
+        {button}
       </ul>
     );
   }

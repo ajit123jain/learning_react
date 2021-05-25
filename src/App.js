@@ -1,5 +1,6 @@
 import Header from './components/Header';
 import Login from './components/Login';
+import Home from './components/Home';
 import Profile from './components/Profile';
 
 import PostList from './components/PostList';
@@ -13,9 +14,6 @@ import { browserHistory } from 'react-router';
 import './App.css';
 
 
-const Home = () => {
-  return <h2>Home Page</h2>;
-};
 
 const About = () => {
   return <h2>About Page</h2>;

@@ -9,14 +9,75 @@ export default class PostList extends Component {
       postList: [],
       current_post: null,
       current_user_id: props.user_id,
-      currentIndex: -1
+      currentIndex: -1,
+      newPost: false,
+      title: "",
+      description: ""
     };
 
     this.fetchPostList = this.fetchPostList.bind(this);
+    this.createNewPost = this.createNewPost.bind(this);
+    this.newPost = this.newPost.bind(this);
+    this.createNewPost = this.createNewPost.bind(this);
+    this.onChangeTitle = this.onChangeTitle.bind(this);
+    this.onChangeDescription = this.onChangeDescription.bind(this);
   }
 
   componentDidMount() {
     this.fetchPostList(this.state.current_user_id);
+  }
+
+  onChangeTitle(e){
+    let title = e.target.value 
+    this.setState({
+      title: title
+    })
+  }
+
+  onChangeDescription(e){
+    let description = e.target.value 
+    this.setState({
+      description: description
+    })
+  }
+
+  setConfig(){
+    var config = {
+      headers: {
+        'Authorization': window.localStorage.getItem("token")
+      }
+    }
+    return config;
+  }
+
+  createNewPost(){
+    let title = this.state.title
+    let description = this.state.description 
+    var data = {
+      title: title,
+      description: description,
+      published: false,
+      user_id: this.props.current_user.id
+    }
+    debugger;
+    let config = this.setConfig();
+    PostService.createPost(data, config)
+      .then(response => {
+        this.setState({
+          new_post: false,
+          title: "",
+          description: ""
+        })
+      })
+      .catch(e => {
+        alert("Please try Again.") 
+      });
+  }
+
+  newPost(){
+    this.setState({
+      newPost: true
+    }) 
   }
 
   setActivePost(post, index) {
@@ -52,6 +113,9 @@ export default class PostList extends Component {
     let postList = this.state.postList
     let currentIndex = this.state.currentIndex
     let current_post = this.state.current_post
+    let newPost = this.state.newPost
+    let title = this.state.title
+    let description = this.state.description
     return (
       <div className="posts">
         <div className="posts-list">
@@ -106,6 +170,27 @@ export default class PostList extends Component {
               <p>Please click on a Post...</p>
             </div>
           )}
+
+          { newPost ?
+            (
+              <div>
+                <h3>New Post</h3>
+                <form>
+                  <div>
+                    <input type="text" name="title" value={title} onChange={this.onChangeTitle} placeholder="Title" />
+                    <input type="text" name="description" value={description} onChange={this.onChangeDescription} placeholder="Description" />
+                  </div>
+                  <div className="actions">
+                    <button className="btn btn-sm btn-info" onClick={this.createNewPost}>Create Post</button>
+                  </div>
+                </form>
+              </div>
+            ) : (
+              <div>
+                <button onClick={this.newPost}>Add New Post</button>
+              </div>
+            )
+          }
       </div>
     );
   }

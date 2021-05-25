@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PostService from "../services/PostService";
 import { Link } from 'react-router-dom';
+import { Editor } from '@tinymce/tinymce-react';
 
 export default class PostList extends Component {
   constructor(props) {
@@ -12,7 +13,8 @@ export default class PostList extends Component {
       currentIndex: -1,
       newPost: false,
       title: "",
-      description: ""
+      editor: "",
+      selectedFile: null
     };
 
     this.fetchPostList = this.fetchPostList.bind(this);
@@ -20,7 +22,8 @@ export default class PostList extends Component {
     this.newPost = this.newPost.bind(this);
     this.createNewPost = this.createNewPost.bind(this);
     this.onChangeTitle = this.onChangeTitle.bind(this);
-    this.onChangeDescription = this.onChangeDescription.bind(this);
+    this.onFileChange = this.onFileChange.bind(this);
+    this.handleEditorChange = this.handleEditorChange.bind(this);
   }
 
   componentDidMount() {
@@ -34,11 +37,14 @@ export default class PostList extends Component {
     })
   }
 
-  onChangeDescription(e){
-    let description = e.target.value 
+  handleEditorChange(e){
+    let content = e.target.getContent();
     this.setState({
-      description: description
+      editor: content
     })
+  }
+  onFileChange(event){
+    this.setState({ selectedFile: event.target.files[0] });
   }
 
   setConfig(){
@@ -52,15 +58,19 @@ export default class PostList extends Component {
 
   createNewPost(){
     let title = this.state.title
-    let description = this.state.description 
-    var data = {
-      title: title,
-      description: description,
-      published: false,
-      user_id: this.props.current_user.id
-    }
+    let editor = this.state.editor 
     let config = this.setConfig();
-    PostService.createPost(data, config)
+    const formData = new FormData();
+    formData.append(
+        "post[image]",
+        this.state.selectedFile,
+        this.state.selectedFile.name
+      );
+      formData.append("post[title]", title)
+      formData.append("post[description]", editor)
+      formData.append("post[user_id]", this.props.current_user.id)
+      formData.append("post[published]", false)
+    PostService.createPost(formData, config)
       .then(response => {
         this.setState({
           new_post: false,
@@ -114,7 +124,7 @@ export default class PostList extends Component {
     let current_post = this.state.current_post
     let newPost = this.state.newPost
     let title = this.state.title
-    let description = this.state.description
+    let editor = this.state.editor
     return (
       <div className="posts">
         <div className="posts-list">
@@ -174,10 +184,30 @@ export default class PostList extends Component {
             (
               <div>
                 <h3>New Post</h3>
-                <form>
+                <form multipart="true">
                   <div>
                     <input type="text" name="title" value={title} onChange={this.onChangeTitle} placeholder="Title" />
-                    <input type="text" name="description" value={description} onChange={this.onChangeDescription} placeholder="Description" />
+                    <br></br>
+                    <input type="file" onChange={this.onFileChange} name="image" />
+                    <Editor
+                      initialValue={editor}
+                      init={{
+                        height: 500,
+                        menubar: false,
+                        plugins: [
+                          'advlist autolink lists link image',
+                          'charmap print preview anchor help',
+                          'searchreplace visualblocks code',
+                          'insertdatetime media table paste wordcount'
+                        ],
+                        toolbar:
+                          'undo redo | formatselect | bold italic | \
+                          alignleft aligncenter alignright | \
+                          bullist numlist outdent indent | help'
+                      }}
+                      onChange={this.handleEditorChange}
+                      name ="richeditor"
+                    />
                   </div>
                   <div className="actions">
                     <button className="btn btn-sm btn-info" onClick={this.createNewPost}>Create Post</button>

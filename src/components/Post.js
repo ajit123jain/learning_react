@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PostService from "../services/PostService";
-import { Link } from 'react-router-dom';
+import { Editor } from '@tinymce/tinymce-react';
 
 export default class Post extends Component 
 {
@@ -8,7 +8,7 @@ export default class Post extends Component
     super(props);
     this.getPost = this.getPost.bind(this);
     this.onChangeTitle = this.onChangeTitle.bind(this);
-    this.onChangeDescription = this.onChangeDescription.bind(this);
+    this.handleEditorChange = this.handleEditorChange.bind(this);
     this.updatePublished = this.updatePublished.bind(this);
     this.updatePost = this.updatePost.bind(this);
     this.deletePost = this.deletePost.bind(this);
@@ -34,8 +34,8 @@ export default class Post extends Component
     }));
   }
 
-  onChangeDescription(e){
-    let description = e.target.value 
+  handleEditorChange(e){
+    let description = e.target.getContent();
     this.setState(prevState => ({
       current_post: {
         ...prevState.current_post,
@@ -135,8 +135,26 @@ export default class Post extends Component
         <form>
           <div>
             <input type="text" name="title" value={current_post.title} onChange={this.onChangeTitle} />
-            <input type="text" name="description" value={current_post.description} onChange={this.onChangeDescription} />
             <label>Status: {current_post.published? "Published" : "Pending"}</label>
+            <Editor
+              initialValue={current_post.description}
+              init={{
+                height: 500,
+                menubar: false,
+                plugins: [
+                  'advlist autolink lists link image',
+                  'charmap print preview anchor help',
+                  'searchreplace visualblocks code',
+                  'insertdatetime media table paste wordcount'
+                ],
+                toolbar:
+                  'undo redo | formatselect | bold italic | \
+                  alignleft aligncenter alignright | \
+                  bullist numlist outdent indent | help'
+              }}
+              onChange={this.handleEditorChange}
+              name ="description"
+            />
           </div>
           <div className="actions">
             <button className="btn btn-sm btn-info" onClick={this.updatePublished}>{current_post.published? "Unpublish" : "Publish"}</button>

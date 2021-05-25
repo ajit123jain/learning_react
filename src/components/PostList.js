@@ -2,6 +2,13 @@ import React, { Component } from 'react';
 import PostService from "../services/PostService";
 import { Link } from 'react-router-dom';
 import { Editor } from '@tinymce/tinymce-react';
+import Select from 'react-select';
+
+const options = [
+  { value: 'chocolate', label: 'Chocolate' },
+  { value: 'strawberry', label: 'Strawberry' },
+  { value: 'vanilla', label: 'Vanilla' },
+];
 
 export default class PostList extends Component {
   constructor(props) {
@@ -14,7 +21,8 @@ export default class PostList extends Component {
       newPost: false,
       title: "",
       editor: "",
-      selectedFile: null
+      selectedFile: null,
+      selectedOption: null
     };
 
     this.fetchPostList = this.fetchPostList.bind(this);
@@ -24,12 +32,16 @@ export default class PostList extends Component {
     this.onChangeTitle = this.onChangeTitle.bind(this);
     this.onFileChange = this.onFileChange.bind(this);
     this.handleEditorChange = this.handleEditorChange.bind(this);
+    this.handleSelectChange = this.handleSelectChange.bind(this);
   }
 
   componentDidMount() {
     this.fetchPostList(this.state.current_user_id);
   }
 
+  handleSelectChange(e){
+    this.selectedOption = e.value
+  }
   onChangeTitle(e){
     let title = e.target.value 
     this.setState({
@@ -189,6 +201,12 @@ export default class PostList extends Component {
                     <input type="text" name="title" value={title} onChange={this.onChangeTitle} placeholder="Title" />
                     <br></br>
                     <input type="file" onChange={this.onFileChange} name="image" />
+                    <Select
+                      value={this.state.selectedOption}
+                      onChange={this.handleSelectChange}
+                      options={options}
+                      style={{'margin-bottom': '50px'}}
+                    />
                     <Editor
                       initialValue={editor}
                       init={{

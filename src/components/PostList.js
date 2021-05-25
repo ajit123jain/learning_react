@@ -59,7 +59,6 @@ export default class PostList extends Component {
       published: false,
       user_id: this.props.current_user.id
     }
-    debugger;
     let config = this.setConfig();
     PostService.createPost(data, config)
       .then(response => {

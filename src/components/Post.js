@@ -119,8 +119,6 @@ export default class Post extends Component
         this.props.history.push('/posts')
       })
       .catch(e => {
-        console.log(e)
-        debugger;
         alert("Please try Again.") 
       });
 

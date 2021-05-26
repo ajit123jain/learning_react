@@ -2,6 +2,7 @@ import Header from './components/Header';
 import Login from './components/Login';
 import Home from './components/Home';
 import Profile from './components/Profile';
+import About from './components/About';
 
 import PostList from './components/PostList';
 import Post from './components/Post';
@@ -15,9 +16,6 @@ import './App.css';
 
 
 
-const About = () => {
-  return <h2>About Page</h2>;
-};
 
 const Contact = () => {
   return <h2>Contact Page</h2>;

@@ -94,7 +94,7 @@ class App extends Component {
       <BrowserRouter>
         <Header isLoggedIn={isLoggedIn}  />
         <Switch>
-          <Route path="/" component={Home} exact={true} />
+          <Route path="/" component={Home} user_id= {current_user.id} exact={true} />
           <Route path="/about" component={About} />
           <Route path="/contact" component={Contact} />
           <Route path="/profile" exact={true} 

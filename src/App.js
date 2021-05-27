@@ -1,8 +1,10 @@
 import Header from './components/Header';
 import Login from './components/Login';
 import Home from './components/Home';
+import logo from './logo.svg';
+import About from './components/Home';
 import Profile from './components/Profile';
-import About from './components/About';
+import Contact from './Contact';
 
 import PostList from './components/PostList';
 import Post from './components/Post';
@@ -13,26 +15,6 @@ import LoginService from "./services/LoginService";
 import { browserHistory } from 'react-router';
 
 import './App.css';
-
-
-
-
-const Contact = () => {
-  return <h2>Contact Page</h2>;
-};
-
-// const Profile = (props) => {
-//   let user_id = props.current_user && props.current_user.id ;
-//   let url = "/profile/"+ user_id; 
-//   return (
-//     <div>
-//       <h2>Profile Page</h2>
-//       <Link to={url}>Edit Profile</Link>
-//       <br></br>
-//       <button onClick = {props.signOutUser} className="btn-danger">Logout</button>
-//     </div>
-//   );
-// };
 
 const EditProfile = (props) => {
   if (props.current_user){

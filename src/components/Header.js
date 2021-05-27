@@ -34,6 +34,11 @@ class Header extends Component {
           </NavLink>
         </li>
         <li>
+          <NavLink to="/pdfs" activeClassName="active">
+            Pdfs
+          </NavLink>
+        </li>
+        <li>
           <NavLink to="/contact" activeClassName="active">
             Contact
           </NavLink>

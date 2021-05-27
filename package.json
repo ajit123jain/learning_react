@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@phuocng/react-pdf-viewer": "^1.7.0",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -13,6 +14,7 @@
     "dotenv": "^10.0.0",
     "firebase": "^8.6.2",
     "mdbreact": "^5.0.2",
+    "pdfjs-dist": "^2.7.570",
     "react": "^17.0.2",
     "react-bootstrap": "^1.6.0",
     "react-chartjs-2": "^3.0.3",

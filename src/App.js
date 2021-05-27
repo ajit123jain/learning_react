@@ -1,10 +1,11 @@
 import Header from './components/Header';
 import Login from './components/Login';
 import Home from './components/Home';
+import CandyPdf from './components/CandyPdf';
 import logo from './logo.svg';
-import About from './components/Home';
+import About from './components/About';
 import Profile from './components/Profile';
-import Contact from './Contact';
+import Contact from './components/Contact';
 
 import PostList from './components/PostList';
 import Post from './components/Post';
@@ -74,6 +75,7 @@ class App extends Component {
           <Route path="/" component={Home} user_id= {current_user.id} exact={true} /> : '' 
           }
           <Route path="/about" component={About} />
+          <Route path="/pdfs" component={CandyPdf} />
           <Route path="/contact" component={Contact} />
           <Route path="/profile" exact={true} 
             render={(props) => (

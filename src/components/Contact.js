@@ -1,6 +1,6 @@
 import {useState} from 'react';
-import logo from './logo.svg';
-import { getToken, onMessageListener } from './firebase';
+import logo from '../logo.svg';
+import { getToken, onMessageListener } from '../firebase';
 import {Button, Row, Col, Toast} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 // import '../App.css';

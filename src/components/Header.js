@@ -39,6 +39,11 @@ class Header extends Component {
           </NavLink>
         </li>
         <li>
+          <NavLink to="/poplify_pdfs" activeClassName="active">
+            Poplify Pdfs
+          </NavLink>
+        </li>
+        <li>
           <NavLink to="/contact" activeClassName="active">
             Contact
           </NavLink>

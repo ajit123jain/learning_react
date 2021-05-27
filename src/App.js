@@ -2,6 +2,7 @@ import Header from './components/Header';
 import Login from './components/Login';
 import Home from './components/Home';
 import CandyPdf from './components/CandyPdf';
+import PoplifyPdf from './components/PoplifyPdf';
 import logo from './logo.svg';
 import About from './components/About';
 import Profile from './components/Profile';
@@ -76,6 +77,7 @@ class App extends Component {
           }
           <Route path="/about" component={About} />
           <Route path="/pdfs" component={CandyPdf} />
+          <Route path="/poplify_pdfs" component={PoplifyPdf} />
           <Route path="/contact" component={Contact} />
           <Route path="/profile" exact={true} 
             render={(props) => (

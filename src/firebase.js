@@ -11,7 +11,6 @@ var firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
-console.log(`HELLO ${process.env.FIREBASE_STORAGE_BUCKET}`);
 const messaging = firebase.messaging();
 
 export const getToken = (setTokenFound) => {

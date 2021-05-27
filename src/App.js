@@ -30,11 +30,6 @@ const EditProfile = (props) => {
   }
 };
 
-// const Post = (props) => {
-//   console.log(props)
-//   return <h2>Posts List will be here.</h2>;
-// };
-
 const NotFound = () => {
   return <h2>Page Not found.</h2>;
 };
@@ -74,7 +69,10 @@ class App extends Component {
       <BrowserRouter>
         <Header isLoggedIn={isLoggedIn}  />
         <Switch>
-          <Route path="/" component={Home} user_id= {current_user.id} exact={true} />
+          {
+          current_user ? 
+          <Route path="/" component={Home} user_id= {current_user.id} exact={true} /> : '' 
+          }
           <Route path="/about" component={About} />
           <Route path="/contact" component={Contact} />
           <Route path="/profile" exact={true} 

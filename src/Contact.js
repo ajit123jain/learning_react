@@ -5,11 +5,6 @@ import {Button, Row, Col, Toast} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 // import '../App.css';
 
-
-const FIREBASE_API_KEY = `${process.env.REACT_APP_FIREBASE_API_KEY}`
-
-console.log(FIREBASE_API_KEY)
-
 function Contact() {
   
   const [show, setShow] = useState(false);

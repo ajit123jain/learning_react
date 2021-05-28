@@ -8,6 +8,8 @@ import About from './components/About';
 import Profile from './components/Profile';
 import Contact from './components/Contact';
 
+import ReactHook from './hooks/ReactHook';
+
 import PostList from './components/PostList';
 import Post from './components/Post';
 import React, { Component } from 'react';
@@ -79,6 +81,7 @@ class App extends Component {
           <Route path="/pdfs" component={CandyPdf} />
           <Route path="/poplify_pdfs" component={PoplifyPdf} />
           <Route path="/contact" component={Contact} />
+          <Route path="/react_hooks" component={ReactHook} />
           <Route path="/profile" exact={true} 
             render={(props) => (
               <Profile {...props} isLoggedIn={isLoggedIn} current_user={current_user} afterLogout={this.afterLogout} />

@@ -48,6 +48,11 @@ class Header extends Component {
             Contact
           </NavLink>
         </li>
+        <li>
+          <NavLink to="/react_hooks" activeClassName="active">
+            React Hooks
+          </NavLink>
+        </li>
         {button}
       </ul>
     );

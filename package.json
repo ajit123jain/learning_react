@@ -14,7 +14,7 @@
     "dotenv": "^10.0.0",
     "firebase": "^8.6.2",
     "mdbreact": "^5.0.2",
-    "pdfjs-dist": "^2.7.570",
+    "pdfjs-dist": "2.6.347",
     "react": "^17.0.2",
     "react-bootstrap": "^1.6.0",
     "react-chartjs-2": "^3.0.3",

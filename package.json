@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/styled": "^11.3.0",
     "@phuocng/react-pdf-viewer": "^1.7.0",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -13,6 +14,7 @@
     "chart.js": "^3.3.0",
     "dotenv": "^10.0.0",
     "firebase": "^8.6.2",
+    "formik": "^2.2.8",
     "mdbreact": "^5.0.2",
     "pdfjs-dist": "2.6.347",
     "react": "^17.0.2",
@@ -25,7 +27,8 @@
     "react-scripts": "4.0.3",
     "react-select": "^4.3.1",
     "styled-components": "^5.3.0",
-    "web-vitals": "^1.0.1"
+    "web-vitals": "^1.0.1",
+    "yup": "^0.32.9"
   },
   "scripts": {
     "start": "react-scripts start",

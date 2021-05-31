@@ -50,7 +50,7 @@ class Header extends Component {
         </li>
         <li>
           <NavLink to="/react_hooks" activeClassName="active">
-            React Hooks
+            Formik Form
           </NavLink>
         </li>
         {button}

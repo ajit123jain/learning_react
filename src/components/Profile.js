@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import LoginService from "../services/LoginService";
 import { BrowserRouter, Link, Route, Switch, Redirect } from "react-router-dom";
 import LocalStorage from '../libs';
+import { withCookies, Cookies } from "react-cookie";
+import Auth from '../Auth';
 
-export default class Profile extends Component
+class Profile extends Component
 {
   constructor(props) {
     super(props);
     this.state = {
-      user_id: props.current_user.id
+      user_id: this.props.cookies.get('user_id')
     };
     this.signOutUser = this.signOutUser.bind(this);
     this.afterLogout = props.afterLogout.bind(this);
@@ -18,8 +20,13 @@ export default class Profile extends Component
     LoginService.signOut()
     .then(response => {
       window.localStorage.clear();
-      this.afterLogout(false, null);
-      this.props.history.push("/login");
+      
+      const host = process.env.REACT_APP_DOMAIN + ':' +process.env.REACT_APP_PORT
+      const login_page = `http://${host}/login`
+      this.props.cookies.remove('user_id', {domain: `.${process.env.REACT_APP_DOMAIN}` })
+      this.props.cookies.remove('subdomain', {domain:  `.${process.env.REACT_APP_DOMAIN}`})
+      window.location = login_page
+      // this.props.history.push("/login");
     })
     .catch(e => {
       alert("Please try again.")
@@ -39,3 +46,4 @@ export default class Profile extends Component
 
 
 }
+export default withCookies(Profile)

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import LoginService from "../services/LoginService";
 import LocalStorage from '../libs';
+import { withCookies, Cookies } from "react-cookie";
 
 class Login extends Component {
   constructor(props) {
@@ -34,6 +35,11 @@ class Login extends Component {
     );
   }
 
+  setCookie(key, value){
+    const domainWithoutPort = '.'+ process.env.REACT_APP_DOMAIN
+    this.props.cookies.set(key, value, {domain: domainWithoutPort})
+  }
+
   signInformSubmit(){
     var data = {
       email: this.state.email,
@@ -46,10 +52,13 @@ class Login extends Component {
         });
         let user = response.data
         user["authorization"] = response.headers.authorization
-        LocalStorage.addToken(response.headers.authorization);
-        LocalStorage.addUser(user);
-        this.afterLogin(true, user);
-        this.props.history.push("/profile");
+        user["subdomain"] = response.headers["tenant-name"]
+        this.setCookie('user_id', user.id);
+        this.setCookie('subdomain', user.subdomain)
+
+
+        const profile = `http://${user["subdomain"]}.${window.location.host}/profile`
+        window.location.assign(profile)
 
       })
       .catch(e => {
@@ -99,4 +108,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default withCookies(Login);

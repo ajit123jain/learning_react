@@ -2,9 +2,7 @@ import http from "../http-common";
 
 class PostService {
   fetchList(data, config) {
-    return http.get("/posts/", {headers: {
-      'Authorization': window.localStorage.getItem("token")
-    }});
+    return http.get("/posts/", config);
   }
 
   showPost(id, config) {

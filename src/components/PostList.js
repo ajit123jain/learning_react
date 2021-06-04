@@ -112,7 +112,8 @@ export default class PostList extends Component {
     var data = {user_id: user_id}
     var config = {
       headers: {
-        'Authorization': window.localStorage.getItem("token")
+        'Authorization': window.localStorage.getItem("token"),
+        'Tenant-Name':  window.localStorage.getItem("tenant-name")
       }
     }
     PostService.fetchList(data, config)

@@ -46,7 +46,8 @@ export default class Post extends Component
   setConfig(){
     var config = {
       headers: {
-        'Authorization': window.localStorage.getItem("token")
+        'Authorization': window.localStorage.getItem("token"),
+        'Tenant-Name':  window.localStorage.getItem("tenant-name")
       }
     }
     return config;

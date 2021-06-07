@@ -60,20 +60,11 @@ class PostList extends Component {
     this.setState({ selectedFile: event.target.files[0] });
   }
 
-  setConfig(){
-    var config = {
-      headers: {
-        'Authorization': window.localStorage.getItem("token")
-      }
-    }
-    return config;
-  }
-
   createNewPost(){
     let title = this.state.title
     let editor = this.state.editor 
-    let config = this.setConfig();
     const formData = new FormData();
+    debugger;
     formData.append(
         "post[image]",
         this.state.selectedFile,
@@ -81,10 +72,11 @@ class PostList extends Component {
       );
       formData.append("post[title]", title)
       formData.append("post[description]", editor)
-      formData.append("post[user_id]", this.props.current_user.id)
+      formData.append("post[user_id]", this.state.current_user_id)
       formData.append("post[published]", false)
-    PostService.createPost(formData, config)
+    PostService.createPost(formData)
       .then(response => {
+        debugger;
         this.setState({
           new_post: false,
           title: "",
@@ -92,6 +84,7 @@ class PostList extends Component {
         })
       })
       .catch(e => {
+        debugger;
         alert("Please try Again.") 
       });
   }
@@ -111,12 +104,6 @@ class PostList extends Component {
 
   fetchPostList(user_id) {
     var data = {user_id: user_id}
-    var config = {
-      headers: {
-        'Authorization': window.localStorage.getItem("token"),
-        'Tenant-Name':  window.localStorage.getItem("tenant-name")
-      }
-    }
     PostService.fetchList(data)
       .then(response => {
         this.setState({

@@ -18,14 +18,16 @@ class Profile extends Component
   signOutUser(){
     LoginService.signOut()
     .then(response => {
-      window.localStorage.clear();
-      
-      const host = process.env.REACT_APP_DOMAIN + ':' +process.env.REACT_APP_PORT
-      const login_page = `http://${host}/login`
-      this.props.cookies.remove('user_id', {domain: `.${process.env.REACT_APP_DOMAIN}` })
-      this.props.cookies.remove('subdomain', {domain:  `.${process.env.REACT_APP_DOMAIN}`})
-      window.location = login_page
-      // this.props.history.push("/login");
+      if(response.status == 200 || response.status == "ok"){
+        const host = process.env.REACT_APP_DOMAIN + ':' +process.env.REACT_APP_PORT
+        const login_page = `http://${host}/login`
+        this.props.cookies.remove('user_id', {domain: `.${process.env.REACT_APP_DOMAIN}` })
+        this.props.cookies.remove('subdomain', {domain:  `.${process.env.REACT_APP_DOMAIN}`})
+        window.location = login_page
+      }
+      else{
+        alert("Couldn't logout. Please try again.")
+      }
     })
     .catch(e => {
       alert("Please try again.")

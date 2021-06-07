@@ -5,20 +5,20 @@ class PostService {
     return http.get("/posts/");
   }
 
-  showPost(id, config) {
-    return http.get(`/posts/${id}`, config);
+  showPost(id) {
+    return http.get(`/posts/${id}`);
   }
 
-  updatePost(id, data, config){
-    return http.patch(`/posts/${id}`, data, config);
+  updatePost(id, data){
+    return http.patch(`/posts/${id}`, data);
   }
 
-  deletePost(id, config){
-    return http.delete(`/posts/${id}`, config);
+  deletePost(id){
+    return http.delete(`/posts/${id}`);
   }
 
-  createPost(data, config){
-    return http.post("/posts/", data, config);
+  createPost(data){
+    return http.post("/posts/", data);
   }
 
   

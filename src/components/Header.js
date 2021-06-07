@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-
+import { withCookies, Cookies } from "react-cookie";
 
 class Header extends Component {
   constructor(props) {
@@ -8,7 +8,7 @@ class Header extends Component {
   }
 
   render() {
-    const isLoggedIn = this.props.isLoggedIn;
+    const isLoggedIn = this.props.cookies.get('user_id') ? true : false;
     let button;
     if (isLoggedIn)
       {
@@ -59,4 +59,4 @@ class Header extends Component {
   }
 }
 
-export default Header;
+export default withCookies(Header);

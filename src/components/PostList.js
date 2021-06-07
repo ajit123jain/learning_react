@@ -3,6 +3,7 @@ import PostService from "../services/PostService";
 import { Link } from 'react-router-dom';
 import { Editor } from '@tinymce/tinymce-react';
 import Select from 'react-select';
+import { withCookies, Cookies } from "react-cookie";
 
 const options = [
   { value: 'chocolate', label: 'Chocolate' },
@@ -10,13 +11,13 @@ const options = [
   { value: 'vanilla', label: 'Vanilla' },
 ];
 
-export default class PostList extends Component {
+class PostList extends Component {
   constructor(props) {
     super(props);
     this.state = {
       postList: [],
       current_post: null,
-      current_user_id: props.user_id,
+      current_user_id: this.props.cookies.get('user_id'),
       currentIndex: -1,
       newPost: false,
       title: "",
@@ -116,7 +117,7 @@ export default class PostList extends Component {
         'Tenant-Name':  window.localStorage.getItem("tenant-name")
       }
     }
-    PostService.fetchList(data, config)
+    PostService.fetchList(data)
       .then(response => {
         this.setState({
           postList: response.data
@@ -243,3 +244,5 @@ export default class PostList extends Component {
     );
   }
 }
+
+export default withCookies(PostList);

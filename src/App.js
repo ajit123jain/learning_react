@@ -81,7 +81,7 @@ class App extends Component {
           <Route path="/pdfs" component={CandyPdf} />
           <Route path="/poplify_pdfs" component={PoplifyPdf} />
           <Route path="/contact" component={Contact} />
-          <Route path="/react_hooks" component={ReactHook} />
+          <Route path="/react_hooks" component={PostList} />
           <Route path="/profile" exact={true} 
             render={(props) => (
               <Profile {...props} isLoggedIn={isLoggedIn} current_user={current_user} afterLogout={this.afterLogout} />

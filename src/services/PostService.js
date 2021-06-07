@@ -1,8 +1,8 @@
 import http from "../http-common";
 
 class PostService {
-  fetchList(data, config) {
-    return http.get("/posts/", config);
+  fetchList(data) {
+    return http.get("/posts/");
   }
 
   showPost(id, config) {

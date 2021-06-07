@@ -64,7 +64,7 @@ class PostList extends Component {
     let title = this.state.title
     let editor = this.state.editor 
     const formData = new FormData();
-    debugger;
+    
     formData.append(
         "post[image]",
         this.state.selectedFile,
@@ -76,7 +76,7 @@ class PostList extends Component {
       formData.append("post[published]", false)
     PostService.createPost(formData)
       .then(response => {
-        debugger;
+        
         this.setState({
           new_post: false,
           title: "",
@@ -84,7 +84,7 @@ class PostList extends Component {
         })
       })
       .catch(e => {
-        debugger;
+        
         alert("Please try Again.") 
       });
   }

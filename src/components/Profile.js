@@ -3,7 +3,6 @@ import LoginService from "../services/LoginService";
 import { BrowserRouter, Link, Route, Switch, Redirect } from "react-router-dom";
 import LocalStorage from '../libs';
 import { withCookies, Cookies } from "react-cookie";
-import Auth from '../Auth';
 
 class Profile extends Component
 {

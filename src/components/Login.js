@@ -45,19 +45,20 @@ class Login extends Component {
       email: this.state.email,
       password: this.state.password
     };
-    LoginService.create(data)
+    const form_data = {"user": data }
+    LoginService.create(form_data)
       .then(response => {
         this.setState({
           errors: null
         });
-        let user = response.data
+        
+        let user = response.data["data"]
         user["authorization"] = response.headers.authorization
         user["subdomain"] = response.headers["tenant-name"]
         this.setCookie('user_id', user.id);
         this.setCookie('subdomain', user.subdomain)
-
-
-        const profile = `http://${user["subdomain"]}.${window.location.host}/profile`
+        debugger;
+        const profile = `http://${user["subdomain"]}.${process.env.REACT_APP_DOMAIN}:${process.env.REACT_APP_PORT}/profile`
         window.location.assign(profile)
 
       })

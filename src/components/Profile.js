@@ -19,7 +19,7 @@ class Profile extends Component
     LoginService.signOut()
     .then(response => {
       if(response.status == 200 || response.status == "ok"){
-        const host = process.env.REACT_APP_DOMAIN + ':' +process.env.REACT_APP_PORT
+        const host = process.env.REACT_APP_HOST + ':' +process.env.REACT_APP_PORT
         const login_page = `http://${host}/login`
         this.props.cookies.remove('user_id', {domain: `.${process.env.REACT_APP_DOMAIN}` })
         this.props.cookies.remove('subdomain', {domain:  `.${process.env.REACT_APP_DOMAIN}`})

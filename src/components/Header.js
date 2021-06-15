@@ -14,6 +14,8 @@ class Header extends Component {
       {
         button = <>
                   <li><NavLink to="/posts" activeClassName="active">Posts</NavLink></li>
+                  <li><NavLink to="/companies" activeClassName="active">Companies</NavLink></li>
+                  <li><NavLink to="/domains" activeClassName="active">Domains</NavLink></li>
                   <li><NavLink to="/profile" activeClassName="active">Profile</NavLink></li>
                 </>;
       }

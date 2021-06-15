@@ -1,6 +1,8 @@
 import Header from './components/Header';
 import Login from './components/Login';
 import Home from './components/Home';
+import Company from './components/Company';
+import Domain from './components/Domain';
 import CandyPdf from './components/CandyPdf';
 import PoplifyPdf from './components/PoplifyPdf';
 import logo from './logo.svg';
@@ -100,6 +102,16 @@ class App extends Component {
           <Route path="/posts" exact={true} 
             render={(props) => (
               <PostList {...props} isLoggedIn={isLoggedIn} current_user={current_user} user_id= {current_user.id} />
+            )}
+          />
+          <Route path="/companies" exact={true} 
+            render={(props) => (
+              <Company {...props} isLoggedIn={isLoggedIn} current_user={current_user}/>
+            )}
+          />
+          <Route path="/domains" exact={true} 
+            render={(props) => (
+              <Domain {...props} isLoggedIn={isLoggedIn} current_user={current_user}/>
             )}
           />
           <Route path="/posts/:id" component={Post} />

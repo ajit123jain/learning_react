@@ -5,6 +5,15 @@ class PostService {
     return http.get("/posts/");
   }
 
+  fetchCompanyList(data){
+    return http.get("/companies");
+  }
+
+  fetchDomainList(data)
+  {
+    return http.get("/list_of_domains")
+  }
+
   showPost(id) {
     return http.get(`/posts/${id}`);
   }

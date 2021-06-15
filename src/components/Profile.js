@@ -9,14 +9,15 @@ class Profile extends Component
   constructor(props) {
     super(props);
     this.state = {
-      user_id: this.props.cookies.get('user_id')
+      user_id: this.props.cookies.get('user_id'),
+      subdomain: this.props.cookies.get('subdomain')
     };
     this.signOutUser = this.signOutUser.bind(this);
     this.afterLogout = props.afterLogout.bind(this);
   }
 
   signOutUser(){
-    LoginService.signOut()
+    LoginService.signOut({"subdomain": this.state.subdomain})
     .then(response => {
       if(response.status == 200 || response.status == "ok"){
         const host = process.env.REACT_APP_HOST + ':' +process.env.REACT_APP_PORT

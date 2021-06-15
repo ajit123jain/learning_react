@@ -6,7 +6,10 @@ class LoginService {
   }
 
   signOut(data, config){
-    return http.delete("/admins/sign_out")
+    if (data["subdomain"] === "admin")
+      return http.delete("/admins/sign_out")
+    else 
+      return http.delete("/users/sign_out")
   }
 
 }

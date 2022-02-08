@@ -11,6 +11,13 @@ const data = {
       backgroundColor: 'rgb(255, 99, 132)',
       borderColor: 'rgba(255, 99, 132, 0.2)',
     },
+    {
+      label: '# of hellos',
+      data: [11, 4, 12, 9, 2, 8],
+      fill: false,
+      backgroundColor: 'rgb(255, 99, 132)',
+      borderColor: 'rgba(255, 206, 86, 0.2)',
+    },
   ],
 };
 
@@ -63,6 +70,9 @@ export default class About extends Component {
       <>
       <div>
         <Pie data={pie_data} height={150} width={150} options={{ maintainAspectRatio: false }} />
+      </div>
+      <div>
+        <Bar data={pie_data} height={150} width={150}  options={{ maintainAspectRatio: false }}/>
       </div>
       <div>
         <Line data={data} height={150} width={150}  options={{ maintainAspectRatio: false }}/>
